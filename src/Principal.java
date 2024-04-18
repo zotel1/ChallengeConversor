@@ -30,7 +30,7 @@ public class Principal {
                 Moneda moneda = consulta.buscaMoneda(opcion);
                 System.out.println("Ingrese la cantidad que desea convertir");
                 double cantidad = Double.valueOf(lectura.nextLine());
-                double resultado = moneda.convertir(cantidad);
+                double resultado = moneda.convertir(opcion, cantidad);
                 System.out.println("El resultado de la conversion es: " + resultado);
                 if (opcion == 1 | opcion == 2 ) {
                     System.out.println("Ingrese la cantidad para comparar:");

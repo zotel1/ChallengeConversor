@@ -5,8 +5,7 @@ public record Moneda (int ARS,
                       int COP,
                       int USD){
 
-    public double convertir(double cantidad) {
-        int opcion = 0;
+    public double convertir(int opcion, double cantidad) {
         switch (opcion) {
             case 1:
                 return cantidad * USD;
