@@ -35,7 +35,7 @@ public class Principal {
                 if (opcion == 1 | opcion == 2 ) {
                     System.out.println("Ingrese la cantidad para comparar:");
                     double cantidadComparar = Double.valueOf(lectura.nextLine());
-                    double resultadoComparar = moneda.convertir(cantidadComparar);
+                    double resultadoComparar = moneda.convertir(opcion, cantidadComparar);
                     System.out.println("El resultado de la comparación es: " + resultadoComparar);
                 }
             } catch (NumberFormatException e) {
