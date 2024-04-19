@@ -2,48 +2,50 @@ import java.util.Scanner;
 
 public class Principal {
     public static void main(String[] args) {
-
         int opcion = 0;
+
         Scanner lectura = new Scanner(System.in);
+        ConversorMonedas conversor = new ConversorMonedas();
         ConsultaMoneda consulta = new ConsultaMoneda();
-        String menu = """
+
+
+        while(opcion != 7){
+            String menu =
+            """
                         **************
                         Sea bienvenido
                         1) Dólar =>> Peso argentino
                         2) Peso argentino =>> Dólar
                         3) Dólar =>> Real brasileño
                         4) Real brasileño =>> Dólar
-                        5) Dólar =>> Peso colombiano
-                        6) Peso colombiano =>> Dólar
+                        5) Dólar =>> Boliviano boliviano
+                        6) Boliviano boliviano =>> Dólar
                         7) Salir
                         Elija una opcion válida
                         **************
                 """;
-
-        while(opcion != 7){
             System.out.println(menu);
-            try{
-                opcion = Integer.valueOf(lectura.nextLine());
-                if(opcion == 7){
-                    break;
+            opcion = lectura.nextInt();
+            if (opcion != 7) {
+                System.out.println("Ingrese el valor que desea convertir: ");
+                int ingresaValor = lectura.nextInt();
+                if (opcion == 1 ) {
+                    double valorDeApi  = consulta.buscaMoneda("USD").conversion_rates().ARS;
+                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor, "USD","ARS");
+                } else if (opcion == 2) {
+                    double valorDeApi = consulta.buscaMoneda("ARS").conversion_rates().USD;
+                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "ARS", "USD");
+                } else if (opcion == 3) {
+                    double valorDeApi = consulta.buscaMoneda("USD").conversion_rates().BRL;
+                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor,"BRL", "USD");
+                } else if (opcion == 4) {
+                    double valorDeApi = consulta.buscaMoneda("BRL").conversion_rates().USD;
+                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "BRL", "USD");
+                } else if (opcion == 5) {
+                    double valorDeApi = consulta.buscaMoneda("USD").conversion_rates().BOB;
+                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor, "COP", "USD");
+                } else if (opcion == 6) {
+                    double valorDeApi = consulta.buscaMoneda("BOB").conversion_rates().USD;
+                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "COP", "USD");
                 }
-                Moneda moneda = consulta.buscaMoneda(opcion);
-                System.out.println("Ingrese la cantidad que desea convertir");
-                double cantidad = Double.valueOf(lectura.nextLine());
-                double resultado = moneda.convertir(opcion, cantidad);
-                System.out.println("El resultado de la conversion es: " + resultado);
-                if (opcion == 1 | opcion == 2 ) {
-                    System.out.println("Ingrese la cantidad para comparar:");
-                    double cantidadComparar = Double.valueOf(lectura.nextLine());
-                    double resultadoComparar = moneda.convertir(opcion, cantidadComparar);
-                    System.out.println("El resultado de la comparación es: " + resultadoComparar);
-                }
-            } catch (NumberFormatException e) {
-                System.out.println("Moneda no encontrada "+e.getMessage());
-            } catch (RuntimeException e) {
-                System.out.println(e.getMessage());
-                System.out.println("Finalizando la aplicación.");
-            }
-        }
-    }
-}
+            }}}}
