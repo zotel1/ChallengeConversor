@@ -30,22 +30,26 @@ public class Principal {
                 System.out.println("Ingrese el valor que desea convertir: ");
                 int ingresaValor = lectura.nextInt();
                 if (opcion == 1 ) {
-                    double valorDeApi  = consulta.buscaMoneda("USD").conversion_rates().ARS;
-                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor, "USD","ARS");
+                    double valorDeApiUSD  = consulta.buscaMoneda("USD").conversion_rates().ARS;
+                    conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor, "USD","ARS");
                 } else if (opcion == 2) {
-                    double valorDeApi = consulta.buscaMoneda("ARS").conversion_rates().USD;
-                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "ARS", "USD");
+                    double valorDeApiARS = consulta.buscaMoneda("ARS").conversion_rates().USD;
+                    if (ingresaValor > 864) {
+                        conversor.obtenerValorConvertido(valorDeApiARS, ingresaValor, "ARS", "USD");
+                    } else {
+                        conversor.obtenerValorCentavo(valorDeApiARS, ingresaValor, "ARS", "USD");
+                    }
                 } else if (opcion == 3) {
-                    double valorDeApi = consulta.buscaMoneda("USD").conversion_rates().BRL;
-                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor,"BRL", "USD");
+                    double valorDeApiUSD = consulta.buscaMoneda("USD").conversion_rates().BRL;
+                    conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor,"USD", "BRL");
                 } else if (opcion == 4) {
-                    double valorDeApi = consulta.buscaMoneda("BRL").conversion_rates().USD;
-                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "BRL", "USD");
+                    double valorDeApiBRL = consulta.buscaMoneda("BRL").conversion_rates().USD;
+                    conversor.obtenerValorConvertido(valorDeApiBRL, ingresaValor, "BRL", "USD");
                 } else if (opcion == 5) {
-                    double valorDeApi = consulta.buscaMoneda("USD").conversion_rates().BOB;
-                    conversor.obtenerValorConvertido(valorDeApi, ingresaValor, "COP", "USD");
+                    double valorDeApiUSD = consulta.buscaMoneda("USD").conversion_rates().BOB;
+                    conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor, "USD", "BOB");
                 } else if (opcion == 6) {
-                    double valorDeApi = consulta.buscaMoneda("BOB").conversion_rates().USD;
-                    conversor.obtenerValorDividido(valorDeApi, ingresaValor, "COP", "USD");
+                    double valorDeApiBOB = consulta.buscaMoneda("BOB").conversion_rates().USD;
+                    conversor.obtenerValorConvertido(valorDeApiBOB, ingresaValor, "BOB", "USD");
                 }
             }}}}
