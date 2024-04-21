@@ -1,3 +1,4 @@
+import java.io.IOException;
 import java.util.Scanner;
 
 public class Principal {
@@ -9,7 +10,8 @@ public class Principal {
         ConsultaMoneda consulta = new ConsultaMoneda();
 
 
-        while(opcion != 7){
+        try{
+            while(opcion != 7 | opcion > 7){
             String menu =
             """
                         **************
@@ -21,12 +23,11 @@ public class Principal {
                         5) Dólar =>> Boliviano boliviano
                         6) Boliviano boliviano =>> Dólar
                         7) Salir
-                        Elija una opcion válida
                         **************
                 """;
             System.out.println(menu);
             opcion = lectura.nextInt();
-            if (opcion != 7) {
+            if (opcion != 7 | opcion > 7) {
                 System.out.println("Ingrese el valor que desea convertir: ");
                 int ingresaValor = lectura.nextInt();
                 if (opcion == 1 ) {
@@ -44,8 +45,14 @@ public class Principal {
                 } else if (opcion == 5) {
                     double valorDeApiUSD = consulta.buscaMoneda("USD").conversion_rates().BOB;
                     conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor, "USD", "BOB");
-                } else if (opcion == 6) {
+                } else  {
                     double valorDeApiBOB = consulta.buscaMoneda("BOB").conversion_rates().USD;
                     conversor.obtenerValorConvertido(valorDeApiBOB, ingresaValor, "BOB", "USD");
-                }
-            }}}}
+                }}
+            }
+            } catch ( NumberFormatException e ){
+            System.out.println("Elija una opcion válida "+e.getMessage());
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+            System.out.println("Finalizando la aplicación.");
+    }}}
