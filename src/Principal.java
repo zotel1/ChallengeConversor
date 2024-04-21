@@ -11,23 +11,27 @@ public class Principal {
 
 
         try{
-            while(opcion != 7 | opcion > 7){
+            while(opcion != 7){
             String menu =
             """
-                        **************
-                        Sea bienvenido
-                        1) Dólar =>> Peso argentino
-                        2) Peso argentino =>> Dólar
-                        3) Dólar =>> Real brasileño
-                        4) Real brasileño =>> Dólar
-                        5) Dólar =>> Boliviano boliviano
-                        6) Boliviano boliviano =>> Dólar
-                        7) Salir
-                        **************
+                        ***********************************************************************
+                                                   Sea bienvenido
+                                                   
+                                            1) Dólar =>> Peso argentino
+                                            2) Peso argentino =>> Dólar
+                                            3) Dólar =>> Real brasileño
+                                            4) Real brasileño =>> Dólar
+                                            5) Dólar =>> Boliviano boliviano
+                                            6) Boliviano boliviano =>> Dólar
+                                            7) Salir
+                                            
+                        ***********************************************************************
                 """;
             System.out.println(menu);
             opcion = lectura.nextInt();
-            if (opcion != 7 | opcion > 7) {
+            if (opcion < 1 || opcion > 7){
+                System.out.println("Elija una opcion válida.\n");
+            } else if (opcion != 7 ) {
                 System.out.println("Ingrese el valor que desea convertir: ");
                 int ingresaValor = lectura.nextInt();
                 if (opcion == 1 ) {
@@ -51,8 +55,8 @@ public class Principal {
                 }}
             }
             } catch ( NumberFormatException e ){
-            System.out.println("Elija una opcion válida "+e.getMessage());
+            System.out.println("Error: Ingrese un número válido. ");
         } catch (RuntimeException e) {
-            System.out.println(e.getMessage());
+            System.out.println("Error inesperado: " +e.getMessage());
             System.out.println("Finalizando la aplicación.");
     }}}
