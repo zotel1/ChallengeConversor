@@ -34,11 +34,7 @@ public class Principal {
                     conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor, "USD","ARS");
                 } else if (opcion == 2) {
                     double valorDeApiARS = consulta.buscaMoneda("ARS").conversion_rates().USD;
-                    if (ingresaValor > 864) {
                         conversor.obtenerValorConvertido(valorDeApiARS, ingresaValor, "ARS", "USD");
-                    } else {
-                        conversor.obtenerValorCentavo(valorDeApiARS, ingresaValor, "ARS", "USD");
-                    }
                 } else if (opcion == 3) {
                     double valorDeApiUSD = consulta.buscaMoneda("USD").conversion_rates().BRL;
                     conversor.obtenerValorConvertido(valorDeApiUSD, ingresaValor,"USD", "BRL");
